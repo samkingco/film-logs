@@ -79,3 +79,10 @@ export function getRolls(state: AppState) {
 
   return sortedRolls;
 }
+
+export function getExportableState(state: AppState) {
+  return {
+    rollsById: state.rollsById,
+    framesById: state.framesById
+  };
+}

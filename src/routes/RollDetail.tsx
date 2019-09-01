@@ -1,65 +1,81 @@
-import React, { useState } from "react";
+import React from "react";
 import { RouteComponentProps, Link } from "@reach/router";
-import { useSelector, useDispatch } from "react-redux";
-import { getRoll, AppState, deleteRoll } from "../store";
+import { format, fromUnixTime } from "date-fns";
+import { useSelector } from "react-redux";
+import { getRoll, AppState } from "../store";
+import {
+  ViewContainer,
+  Title,
+  Headline,
+  Body,
+  Icon,
+  Grid,
+  LinkButton,
+  Button
+} from "../components";
 
 interface Props extends RouteComponentProps<{ rollId: string }> {}
 
 export const RollDetail: React.FC<Props> = (props: Props) => {
-  const { rollId, navigate } = props;
+  const { rollId } = props;
   const roll = useSelector((s: AppState) => getRoll(s, rollId));
-  const dispatch = useDispatch();
-  const [showDeleteConfirmPrompt, setShowDeleteConfirmPrompt] = useState(false);
-
-  const onDeleteRoll = () => {
-    if (rollId) {
-      dispatch(deleteRoll(rollId));
-      if (navigate) {
-        navigate("../");
-      }
-    }
-  };
 
   return roll ? (
-    <>
-      {showDeleteConfirmPrompt ? (
-        <div style={{ border: "1px solid red", padding: 16 }}>
-          <h3>Delete roll?</h3>
-          <button onClick={() => setShowDeleteConfirmPrompt(false)}>No</button>
-          <button onClick={onDeleteRoll}>Yes</button>
-        </div>
-      ) : null}
-      <Link to="../">← Back</Link>
-      <h1>{roll.stock}</h1>
-      {roll.note ? <p>{roll.note}</p> : null}
-      <p>ISO: {roll.iso}</p>
-      <p>Camera: {roll.camera}</p>
-      <p>Created: {roll.createdTime}</p>
-      <p>
-        Exposed: {roll.exposedFrames}/{roll.maxFrames}
-      </p>
-      <p>
-        <Link to="new-frame">Add frame</Link>
-      </p>
+    <ViewContainer
+      backLink
+      action={
+        <LinkButton to="edit" variant="secondary">
+          <Icon>edit</Icon>
+        </LinkButton>
+      }
+    >
+      <Title>{roll.stock}</Title>
+      <Title mb={2}>ISO {roll.iso}</Title>
+
+      <Grid gridTemplateColumns="1fr" gridRowGap={1} mb={6}>
+        {roll.note ? <Body>{roll.note}</Body> : null}
+        <Body color="textAlt">{roll.camera}</Body>
+        <Body color="textAlt">
+          Loaded {format(fromUnixTime(roll.createdTime), "dd MMM yy")}
+        </Body>
+      </Grid>
+
+      <Grid
+        gridTemplateColumns="1fr max-content"
+        gridGap={4}
+        alignItems="start"
+        mb={5}
+      >
+        <Title>
+          {roll.exposedFrames}/{roll.maxFrames}
+        </Title>
+        {`${roll.exposedFrames}` === roll.maxFrames ? (
+          <Button variant="disabled" disabled>
+            <Icon>add</Icon>
+          </Button>
+        ) : (
+          <LinkButton to="new-frame">
+            <Icon>add</Icon>
+          </LinkButton>
+        )}
+      </Grid>
       {roll.frames.map((frame, index) => (
-        <div key={frame.id}>
-          <p>
-            Exposure {roll.frames.length - index} of {roll.maxFrames}
-          </p>
-          <p>{`${frame.shutter} @ f/${frame.aperture}`}</p>
-          <p>
-            <Link to={frame.id}>View frame</Link>
-          </p>
-        </div>
+        <Link to={`${frame.id}/edit`} key={frame.id}>
+          <Grid gridTemplateColumns="40px 1fr" gridGap={2} mb={5}>
+            <Headline>{roll.frames.length - index}</Headline>
+            <Grid gridTemplateColumns="1fr" gridGap={2}>
+              {frame.note ? <Body>{frame.note}</Body> : null}
+              <Body>
+                {frame.shutter} at f/{frame.aperture}
+              </Body>
+              <Body color="textAlt">Focal: {frame.focalLength}mm</Body>
+              <Body color="textAlt">
+                {format(fromUnixTime(frame.captureTime), "H:mm 'on' dd MMM yy")}
+              </Body>
+            </Grid>
+          </Grid>
+        </Link>
       ))}
-      <p>
-        <Link to="edit">Edit roll</Link>
-      </p>
-      <p>
-        <button onClick={() => setShowDeleteConfirmPrompt(true)}>
-          Delete roll
-        </button>
-      </p>
-    </>
+    </ViewContainer>
   ) : null;
 };

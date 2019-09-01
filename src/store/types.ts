@@ -40,6 +40,7 @@ export interface Frame {
   aperture: string;
   shutterWhole: string;
   shutterFraction?: string;
+  shutterStr?: string;
   note?: string;
 }
 
