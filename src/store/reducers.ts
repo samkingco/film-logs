@@ -6,14 +6,16 @@ import {
   DELETE_ROLL,
   CREATE_FRAME,
   UPDATE_FRAME,
-  DELETE_FRAME
+  DELETE_FRAME,
+  SET_THEME_MODE
 } from "./types";
 
 const initialState: AppState = {
   prevRoll: undefined,
   rollsById: {},
   prevFrame: undefined,
-  framesById: {}
+  framesById: {},
+  themeMode: "dark"
 };
 
 export function reducer(state: AppState = initialState, action: ActionTypes) {
@@ -75,6 +77,11 @@ export function reducer(state: AppState = initialState, action: ActionTypes) {
       return {
         ...state,
         framesById: withoutFrame
+      };
+    case SET_THEME_MODE:
+      return {
+        ...state,
+        themeMode: action.themeMode
       };
     default:
       return state;

@@ -1,7 +1,6 @@
 import React from "react";
 import { Router } from "@reach/router";
-import { ThemeProvider } from "emotion-theming";
-import { theme, GlobalStyle, GlobalFonts } from "./components";
+import { ActiveThemeProvider, GlobalStyle, GlobalFonts } from "./components";
 import { RollsList } from "./routes/RollsList";
 import { CreateRoll } from "./routes/CreateRoll";
 import { RollDetail } from "./routes/RollDetail";
@@ -12,7 +11,7 @@ import { Settings } from "./routes/Settings";
 
 const App: React.FC = () => {
   return (
-    <ThemeProvider theme={theme}>
+    <ActiveThemeProvider>
       <GlobalStyle />
       <GlobalFonts />
       <Router>
@@ -24,7 +23,7 @@ const App: React.FC = () => {
         <EditFrame path="/:rollId/:frameId/edit" />
         <Settings path="/settings" />
       </Router>
-    </ThemeProvider>
+    </ActiveThemeProvider>
   );
 };
 

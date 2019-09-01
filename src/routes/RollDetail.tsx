@@ -43,14 +43,14 @@ export const RollDetail: React.FC<Props> = (props: Props) => {
       <Grid
         gridTemplateColumns="1fr max-content"
         gridGap={4}
-        alignItems="start"
+        alignItems="center"
         mb={5}
       >
         <Title>
           {roll.exposedFrames}/{roll.maxFrames}
         </Title>
         {`${roll.exposedFrames}` === roll.maxFrames ? (
-          <Button variant="disabled" disabled>
+          <Button disabled>
             <Icon>add</Icon>
           </Button>
         ) : (

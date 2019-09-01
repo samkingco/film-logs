@@ -47,31 +47,9 @@ export const CreateFrame: React.FC<Props> = (props: Props) => {
 
   return (
     <ViewContainer backLink>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} action="#">
         <Grid gridTemplateColumns="1fr" gridRowGap={4} mb={4}>
-          <Grid gridTemplateColumns="1fr">
-            <Label htmlFor="focalLength">Focal length (mm)</Label>
-            <Input
-              name="focalLength"
-              placeholder="0"
-              inputMode="decimal"
-              pattern="[0-9]*"
-              {...focalLength}
-            />
-          </Grid>
-
-          <Grid gridTemplateColumns="1fr 1fr" gridColumnGap={4}>
-            <Grid gridTemplateColumns="1fr">
-              <Label htmlFor="aperture">Aperture</Label>
-              <Input
-                name="aperture"
-                placeholder="0"
-                inputMode="decimal"
-                pattern="[0-9]+([\.,][0-9]+)?"
-                {...aperture}
-              />
-            </Grid>
-
+          <Grid gridTemplateColumns="2fr 1fr" gridColumnGap={4}>
             <Grid gridTemplateColumns="1fr">
               <Label>Shutter speed</Label>
               <Grid
@@ -98,6 +76,28 @@ export const CreateFrame: React.FC<Props> = (props: Props) => {
                 />
               </Grid>
             </Grid>
+
+            <Grid gridTemplateColumns="1fr">
+              <Label htmlFor="aperture">Aperture</Label>
+              <Input
+                name="aperture"
+                placeholder="0"
+                inputMode="decimal"
+                pattern="[0-9]+([\.,][0-9]+)?"
+                {...aperture}
+              />
+            </Grid>
+          </Grid>
+
+          <Grid gridTemplateColumns="1fr">
+            <Label htmlFor="focalLength">Focal length (mm)</Label>
+            <Input
+              name="focalLength"
+              placeholder="0"
+              inputMode="decimal"
+              pattern="[0-9]*"
+              {...focalLength}
+            />
           </Grid>
 
           <Grid gridTemplateColumns="1fr">

@@ -11,7 +11,7 @@ const fonts = {
   mono: '"SF Mono", Menlo, monospace'
 };
 
-const fontSizes = [14, 16, 20, "8vw"];
+const fontSizes = [14, 16, 20, 28];
 const fontWeights = ["normal", "bold"];
 const lineHeights = ["1", "1.2em", "1.4em", "1.6em"];
 

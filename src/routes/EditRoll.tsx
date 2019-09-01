@@ -33,7 +33,7 @@ export const EditRoll: React.FC<Props> = (props: Props) => {
     if (rollId) {
       dispatch(deleteRoll(rollId));
       if (navigate) {
-        navigate("../");
+        navigate("../../");
       }
     }
   };
@@ -61,9 +61,7 @@ export const EditRoll: React.FC<Props> = (props: Props) => {
       backLink
       action={
         <Button
-          variant="secondary"
-          borderColor="accent"
-          color="accent"
+          variant="destructive"
           onClick={() => setShowDeleteConfirmPrompt(true)}
         >
           <Icon>delete_outline</Icon>
@@ -86,16 +84,19 @@ export const EditRoll: React.FC<Props> = (props: Props) => {
           <Grid gridTemplateColumns="1fr 1fr" gridGap={3}>
             <Button
               variant="secondary"
+              size="large"
               onClick={() => setShowDeleteConfirmPrompt(false)}
             >
               Nope
             </Button>
-            <Button onClick={onDeleteRoll}>Yes, delete</Button>
+            <Button size="large" onClick={onDeleteRoll}>
+              Yes
+            </Button>
           </Grid>
         </Grid>
       ) : null}
 
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} action="#">
         <Grid gridTemplateColumns="1fr" gridRowGap={4} mb={4}>
           <Grid gridTemplateColumns="1fr">
             <Label htmlFor="stock">Stock</Label>

@@ -23,18 +23,18 @@ export const RollsList: React.FC<Props> = () => {
     <ViewContainer
       action={
         <LinkButton to="/settings" variant="tertiary" color="textAlt">
-          <Icon>settings</Icon>
+          <Icon>waves</Icon>
         </LinkButton>
       }
     >
       <Grid
         gridTemplateColumns="1fr max-content"
-        gridGap={4}
+        gridGap={5}
         alignItems="start"
         mb={6}
       >
-        <Title>Film rolls</Title>
-        <LinkButton to="/new-roll">
+        <Title>Rolls</Title>
+        <LinkButton to="/new-roll" mt="-4px">
           <Icon role="presentation">add</Icon>
         </LinkButton>
       </Grid>

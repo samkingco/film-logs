@@ -44,6 +44,46 @@ export const Input = styled("input")<BaseElementProps | TypographyProps>(
   TYPOGRAPHY_PROPS
 );
 
+// Crude for now
+export const Checkbox = styled("input")<BaseElementProps | TypographyProps>(
+  css({
+    m: 0,
+    p: 0,
+    width: "20px",
+    height: "20px",
+    fontFamily: "icon",
+    borderWidth: "2px",
+    borderStyle: "solid",
+    borderColor: "textAlt",
+    bg: "none",
+    outline: "none",
+    appearance: "none",
+    borderRadius: 0,
+    "&:checked": {
+      bg: "accent",
+      borderColor: "accent"
+    }
+  }),
+  BASE_ELEMENT_PROPS,
+  TYPOGRAPHY_PROPS
+);
+
+export const CheckboxLabel = styled("label")<
+  BaseElementProps | TypographyProps
+>(
+  css({
+    m: 0,
+    letterSpacing: "normal",
+    fontFamily: "textAlt",
+    fontWeight: "bold",
+    fontSize: 2,
+    lineHeight: 1,
+    textTransform: "uppercase"
+  }),
+  BASE_ELEMENT_PROPS,
+  TYPOGRAPHY_PROPS
+);
+
 export const TextArea = styled("textarea")<BaseElementProps | TypographyProps>(
   inputStyles,
   css({

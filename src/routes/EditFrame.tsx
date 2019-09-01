@@ -69,9 +69,7 @@ export const EditFrame: React.FC<Props> = (props: Props) => {
       backLinkTo="../../"
       action={
         <Button
-          variant="secondary"
-          borderColor="accent"
-          color="accent"
+          variant="destructive"
           onClick={() => setShowDeleteConfirmPrompt(true)}
         >
           <Icon>delete_outline</Icon>
@@ -94,16 +92,19 @@ export const EditFrame: React.FC<Props> = (props: Props) => {
           <Grid gridTemplateColumns="1fr 1fr" gridGap={3}>
             <Button
               variant="secondary"
+              size="large"
               onClick={() => setShowDeleteConfirmPrompt(false)}
             >
               Nope
             </Button>
-            <Button onClick={onDeleteFrame}>Yes, delete</Button>
+            <Button size="large" onClick={onDeleteFrame}>
+              Yes
+            </Button>
           </Grid>
         </Grid>
       ) : null}
 
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} action="#">
         <Grid gridTemplateColumns="1fr" gridRowGap={4} mb={4}>
           <Grid gridTemplateColumns="2fr 1fr" gridColumnGap={4}>
             <Grid gridTemplateColumns="1fr">

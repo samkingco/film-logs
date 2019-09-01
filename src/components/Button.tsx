@@ -17,7 +17,6 @@ const buttonStyles = css({
   display: "inline-flex",
   width: "auto",
   minWidth: "48px",
-  minHeight: "40px",
   m: 0,
   py: 2,
   px: 3,
@@ -35,26 +34,47 @@ const buttonStyles = css({
   borderStyle: "solid",
   borderColor: "transparent",
   outline: "none",
-  appearance: "none"
+  appearance: "none",
+  "&:hover": {
+    bg: "accentAlt"
+  },
+  "&:disabled": {
+    bg: "text",
+    borderColor: "transparent",
+    color: "bg",
+    opacity: 0.16
+  }
 });
 
 const buttonVariants = variant({
   variants: {
     secondary: {
       bg: "transparent",
-      borderColor: "text",
-      color: "text"
+      borderColor: "textAlt",
+      color: "text",
+      "&:hover": {
+        bg: "bgAlt",
+        borderColor: "text"
+      }
     },
     tertiary: {
       bg: "transparent",
       borderColor: "transparent",
-      color: "text"
+      color: "text",
+      "&:hover": {
+        bg: "bgAlt",
+        borderColor: "transparent"
+      }
     },
-    disabled: {
-      bg: "text",
-      borderColor: "transparent",
-      color: "bg",
-      opacity: 0.16
+    destructive: {
+      bg: "transparent",
+      borderColor: "accent",
+      color: "accent",
+      "&:hover": {
+        bg: "acecnt",
+        borderColor: "accentAlt",
+        color: "bg"
+      }
     }
   }
 });
@@ -81,27 +101,6 @@ export const Button = styled("button")<
   BASE_ELEMENT_PROPS,
   TYPOGRAPHY_PROPS
 );
-// `
-//   width: auto;
-//   padding: 8px;
-//   border: none;
-//   border-radius: 2px;
-//   background: #ffffff;
-//   color: #292929;
-//   font-family: inherit;
-//   font-size: 16px;
-//   line-height: normal;
-//   outline: none;
-
-//   -webkit-font-smoothing: inherit;
-//   -moz-osx-font-smoothing: inherit;
-//   -webkit-appearance: none;
-
-//   &:disabled {
-//     color: #808080;
-//     background: #5c5c5c;
-//   }
-// `;
 
 export const LinkButton = styled(props => <Link {...props} />)<
   ButtonProps | BaseElementProps | TypographyProps

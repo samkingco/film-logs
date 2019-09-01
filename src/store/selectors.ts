@@ -86,3 +86,7 @@ export function getExportableState(state: AppState) {
     framesById: state.framesById
   };
 }
+
+export function getActiveThemeMode(state: AppState) {
+  return state.themeMode;
+}

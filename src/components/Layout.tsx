@@ -1,4 +1,4 @@
-import { styled } from "./index";
+import { styled, css } from "./index";
 import {
   BASE_ELEMENT_PROPS,
   FLEX_CONTAINER_PROPS,
@@ -31,3 +31,17 @@ export const Grid = styled("div")<BaseElementProps | GridContainerProps>(
 );
 
 Grid.displayName = "Grid";
+
+export const Divider = styled("hr")<BaseElementProps | GridContainerProps>(
+  css({
+    width: "100%",
+    border: "none",
+    height: "2px",
+    bg: "text",
+    opacity: 0.24,
+    my: 4
+  }),
+  BASE_ELEMENT_PROPS
+);
+
+Divider.displayName = "Divider";

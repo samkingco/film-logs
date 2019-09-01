@@ -1,3 +1,5 @@
+import { ThemeColorModeName } from "../components";
+
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 export interface AppState {
@@ -5,6 +7,7 @@ export interface AppState {
   rollsById: RollsState;
   prevFrame: Frame | undefined;
   framesById: FramesState;
+  themeMode: ThemeColorModeName;
 }
 
 export interface RollsState {
@@ -56,6 +59,7 @@ export const DELETE_ROLL = "DELETE_ROLL";
 export const CREATE_FRAME = "CREATE_FRAME";
 export const UPDATE_FRAME = "UPDATE_FRAME";
 export const DELETE_FRAME = "DELETE_FRAME";
+export const SET_THEME_MODE = "SET_THEME_MODE";
 
 export interface CreateRollAction {
   type: typeof CREATE_ROLL;
@@ -88,10 +92,16 @@ export interface DeleteFrameAction {
   frameId: string;
 }
 
+export interface SetThemeModeAction {
+  type: typeof SET_THEME_MODE;
+  themeMode: ThemeColorModeName;
+}
+
 export type ActionTypes =
   | CreateRollAction
   | UpdateRollAction
   | DeleteRollAction
   | CreateFrameAction
   | UpdateFrameAction
-  | DeleteFrameAction;
+  | DeleteFrameAction
+  | SetThemeModeAction;

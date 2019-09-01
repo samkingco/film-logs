@@ -1,9 +1,11 @@
 import React from "react";
 import { Global, css } from "@emotion/core";
-import { useActiveThemeContext } from "./index";
+import { useSelector } from "react-redux";
+import { theme } from "./index";
+import { AppState } from "../store";
 
 export function GlobalStyle() {
-  const { theme } = useActiveThemeContext();
+  const themeMode = useSelector((s: AppState) => s.themeMode);
 
   return (
     <Global
@@ -26,13 +28,13 @@ export function GlobalStyle() {
         }
 
         body {
-          background-color: ${theme.colors.bg};
-          color: ${theme.colors.text};
+          background-color: ${theme.colors.modes[themeMode].bg};
+          color: ${theme.colors.modes[themeMode].text};
         }
 
         ::selection {
-          background-color: ${theme.colors.selectionBg};
-          color: ${theme.colors.selectionFg};
+          background-color: ${theme.colors.modes[themeMode].selectionBg};
+          color: ${theme.colors.modes[themeMode].selectionFg};
         }
 
         a {

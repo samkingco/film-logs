@@ -42,7 +42,7 @@ export const CreateRoll: React.FC<Props> = (props: Props) => {
 
   return (
     <ViewContainer backLink>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} action="#">
         <Grid gridTemplateColumns="1fr" gridRowGap={4} mb={4}>
           <Grid gridTemplateColumns="1fr">
             <Label htmlFor="stock">Stock</Label>

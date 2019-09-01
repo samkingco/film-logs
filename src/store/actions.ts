@@ -16,8 +16,11 @@ import {
   UpdateFrameAction,
   UPDATE_FRAME,
   DeleteFrameAction,
-  DELETE_FRAME
+  DELETE_FRAME,
+  SetThemeModeAction,
+  SET_THEME_MODE
 } from "./types";
+import { ThemeColorModeName } from "../components";
 
 export function createRoll(roll: NewRoll): CreateRollAction {
   const createdRoll: Roll = {
@@ -74,5 +77,14 @@ export function deleteFrame(frameId: string): DeleteFrameAction {
   return {
     type: DELETE_FRAME,
     frameId
+  };
+}
+
+export function setThemeMode(
+  themeMode: ThemeColorModeName
+): SetThemeModeAction {
+  return {
+    type: SET_THEME_MODE,
+    themeMode
   };
 }
